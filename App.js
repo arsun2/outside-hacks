@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, Alert, Image, TouchableHighlight, ListView, ScrollView} from 'react-native';
+import { Text, View, StyleSheet, Button, Alert, Image, TouchableHighlight, ListView, ScrollView, Animated} from 'react-native';
 import { Constants } from 'expo';
 
 import * as firebase from 'firebase'; // 4.2.0
@@ -21,7 +21,7 @@ catch(err)
 
 const firebaseApp = firebase;
 const itemsRef = firebaseApp.database().ref();
-		var rootRef = firebase.database().ref();
+		//var rootRef = firebase.database().ref();
 		/* example of how to set value to the database
 		itemsRef.child('/tester').set({
 			beef: "boos",
@@ -43,10 +43,25 @@ export class HypeGrid extends Component {
 }
 
 export class HypeButton extends Component {
+
+  constructor () {
+    super()
+  this.springValue = new Animated.Value(0.3)
+  }
+  spring() {
+    this.springValue.setValue(0.3)
+    Animated.spring(
+      this.springValue,
+      {
+        toValue: 1,
+        friction: 1,
+      }
+      ).start()
+  }
   _handleHypePress = () => {
     Alert.alert(
       'HYPE HYPE HYPE')
-
+      this.spring()
     itemsRef.child('/tester').push({
 			hack: "fun",
 			love: "great"
@@ -58,9 +73,9 @@ export class HypeButton extends Component {
       <View style = {styles.hype_button}>
       <TouchableHighlight onPress = {this._handleHypePress}
       underlayColor='red'>
-        <Image
+        <Animated.Image
           source={{ uri: 'http://i.imgur.com/P5LVcrr.png' }}
-          style={{ height: 140, width: 200 }}
+          style={{ height: 140, width: 200, transform: [{scale: this.springValue}] }}
         />
       </TouchableHighlight>
       </View>
