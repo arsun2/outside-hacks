@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Button, Alert, Image, TouchableHighlight, ListView, ScrollView, Animated} from 'react-native';
+import { Text, View, StyleSheet, Button, Alert, Image, TouchableOpacity, ListView, ScrollView, Animated} from 'react-native';
 import { Constants } from 'expo';
 
 import * as firebase from 'firebase'; // 4.2.0
@@ -71,13 +71,13 @@ export class HypeButton extends Component {
   render() {
     return (
       <View style = {styles.hype_button}>
-      <TouchableHighlight onPress = {this._handleHypePress}
+      <TouchableOpacity onPress = {this._handleHypePress}
       underlayColor='red'>
         <Animated.Image
           source={{ uri: 'http://i.imgur.com/P5LVcrr.png' }}
           style={{ height: 140, width: 200, transform: [{scale: this.springValue}] }}
         />
-      </TouchableHighlight>
+      </TouchableOpacity>
       </View>
       );
   }
