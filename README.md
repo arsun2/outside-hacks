@@ -12,3 +12,4 @@ Copy app.js code and replace code found at https://snack.expo.io/
 - [Andie Phan](https://github.com/andeaseme) 
 - [Robert Passafaro](https://github.com/blockco) 
 - [Phil McLaughlin](https://github.com/pmclaugh) 
+- [Austin Sun](https://github.com/arsun2) 
